@@ -1,3 +1,28 @@
+# Ubuntu for Razer Blade 14 2021. By Jiaxin Li
+## Install Ubuntu 21.04 or newer.
+Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. It is easier to install Ubuntu 21.04 that comes with kernel version 5.11. 
+
+Note that you have to allocate a swap partition of size >=16GB if you need hibernation (to disk). Personally I don't think hibernation is necessary. Suspend (to RAM) is much more useful.
+
+## Screen Brightness Adjustment
+- Kernel 5.12.rc5 introduces a fix to brightness problem. However, nvidia 470 driver doesn't support kernel 5.12.x yet.
+- The solution is to add "amdgpu.backlight=0" to the kernel parameter. Instructions of adding kernel parameter:
+```
+https://askubuntu.com/questions/19486/how-do-i-add-a-kernel-boot-parameter
+```
+
+## Suspend problem
+Please refer to:
+```
+suspend/suspend.sh
+```
+
+## Audio Jack
+Not working yet. No idea how to solve it.
+
+## CPU and Fan control
+Please refer to the following instructions. Branch blade14 is modified based on the original razer-laptop-control project to support Razer Blade 14 2021.
+
 # Razer laptop control project
 A standalone driver + application designed for Razer notebooks
 
