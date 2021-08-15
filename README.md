@@ -2,6 +2,11 @@
 ## Install Ubuntu 21.04 or newer.
 Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. It is easier to install Ubuntu 21.04 that comes with kernel version 5.11. 
 
+For Windows + Ubuntu dual boot, please refer to 
+```
+https://regulus.cc/2019/10/05/Windows10+Ubuntu18.04%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%AE%80%E5%8D%95%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/
+```
+
 Note that you have to allocate a swap partition of size >=16GB if you need hibernation (to disk). Personally I don't think hibernation is necessary. Suspend (to RAM) is much more useful.
 
 ## Screen Brightness Adjustment
@@ -20,8 +25,35 @@ suspend/suspend.sh
 ## Audio Jack
 Not working yet. No idea how to solve it.
 
+## nvidia and cuda
+GTX/RTX 30xx requires cuda 11. Blade 14 2021 requires driver version >= 470 to avoid HDMI output problems. The solution is to follow the guide of 
+```
+https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
+```
+
+I was using network deb method, but there are errors in the installation process. I ran the following command to fix the error, and then continue with the cuda/driver installation.
+```
+sudo apt-get -f install
+```
+
 ## CPU and Fan control
 Please refer to the following instructions. Branch blade14 is modified based on the original razer-laptop-control project to support Razer Blade 14 2021.
+
+Fine-grain cpu control is possible with several methods.
+##### cpupower. 
+It can be installed using apt-get. Please refer to `cpu/cpu_control.sh` for usage examples 
+
+##### gnome extension cpufreq
+The `cpufreq` pluggin allows gui based control of CPU core number, governor, boost frequency, etc.
+1. Install gnome tweaks. It is an app with GUI.
+```
+sudo apt-get install gnome-tweaks
+```
+2. Open gnome tweaks in launcher, go to tab `Extensions`, enable the switch on the top bar of the app.
+3. Go the the following website to install `cpufreq`.
+```
+https://extensions.gnome.org/extension/1082/cpufreq
+``` 
 
 # Razer laptop control project
 A standalone driver + application designed for Razer notebooks
