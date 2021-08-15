@@ -17,10 +17,6 @@ sudo dkms install -m razercontrol -v 1.3.0
 ```
 After this, you MUST Rebuild your initramfs and reboot. The module will now be persistent
 
-```
-sudo update-initramfs -u
-```
-
 ### DKMS REMOVE INSTRUCTIONS
 ```
 sudo dkms remove razercontrol -v 1.3.0 --all
