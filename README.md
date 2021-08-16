@@ -38,6 +38,8 @@ I was using network deb method, but there are errors in the installation process
 sudo apt-get -f install
 ```
 
+Please refer to `gpu/gpu_control.sh` for fine-grain power and performance control of the nvidia gpu.
+
 ## CPU and Fan control
 Please refer to the following instructions. Branch blade14 is modified based on the original razer-laptop-control project to support Razer Blade 14 2021.
 
