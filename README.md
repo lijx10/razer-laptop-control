@@ -2,6 +2,8 @@
 ## Install Ubuntu 21.04 or newer.
 Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. It is easier to install Ubuntu 21.04 that comes with kernel version 5.11. 
 
+You may need to disable `security boot` in BIOS to avoid problems like low-resolution during Ubuntu installation.
+
 For Windows + Ubuntu dual boot, please refer to 
 ```
 https://regulus.cc/2019/10/05/Windows10+Ubuntu18.04%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%AE%80%E5%8D%95%E5%AE%89%E8%A3%85%E6%8C%87%E5%8C%97/
@@ -39,9 +41,9 @@ sudo apt-get -f install
 ## CPU and Fan control
 Please refer to the following instructions. Branch blade14 is modified based on the original razer-laptop-control project to support Razer Blade 14 2021.
 
-Fine-grain cpu control is possible with several methods.
+Fine-grain cpu control is possible with several methods. It seems gnome extension `cpufreq` is working fine, and it is more convenient.
 ##### cpupower. 
-It can be installed using apt-get. Please refer to `cpu/cpu_control.sh` for usage examples 
+It can be installed using apt-get. Please refer to `cpu/cpu_control.sh` for usage examples. GUI available at `https://github.com/vagnum08/cpupower-gui`.
 
 ##### gnome extension cpufreq
 The `cpufreq` pluggin allows gui based control of CPU core number, governor, boost frequency, etc.
