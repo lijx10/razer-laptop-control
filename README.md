@@ -1,6 +1,6 @@
 # Ubuntu for Razer Blade 14 2021. By Jiaxin Li
 ## Install Ubuntu 21.04 or newer.
-Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. It is easier to install Ubuntu 21.04 that comes with kernel version 5.11. 
+Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04.2 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. Good news is that Ubuntu 20.04.3 is shipped with kernel 5.11.x. Please wait for Aug 26, 2021 to get Ubuntu 20.04.3.
 
 You may need to disable `security boot` in BIOS to avoid problems like low-resolution during Ubuntu installation.
 
@@ -12,8 +12,8 @@ https://regulus.cc/2019/10/05/Windows10+Ubuntu18.04%E5%8F%8C%E7%B3%BB%E7%BB%9F%E
 Note that you have to allocate a swap partition of size >=16GB if you need hibernation (to disk). Personally I don't think hibernation is necessary. Suspend (to RAM) is much more useful.
 
 ## Screen Brightness Adjustment
-- Kernel 5.12.rc5 introduces a fix to brightness problem. However, nvidia 470 driver doesn't support kernel 5.12.x yet.
-- The solution is to add "amdgpu.backlight=0" to the kernel parameter. Instructions of adding kernel parameter:
+- Kernel 5.12 should have solved it. Nvidia 470 driver works with kernel 5.12. Not sure if nvidia 470 works with 5.13 yet, need experiments.
+- Another solution is to add "amdgpu.backlight=0" to the kernel parameter. Instructions of adding kernel parameter:
 ```
 https://askubuntu.com/questions/19486/how-do-i-add-a-kernel-boot-parameter
 ```
@@ -25,7 +25,7 @@ suspend/suspend.sh
 ```
 
 ## Audio Jack
-Not working yet. No idea how to solve it.
+Not working yet. No idea how to solve it with software. A workaround is to buy a usb-to-3.5mm converter.
 
 ## nvidia and cuda
 GTX/RTX 30xx requires cuda 11. Blade 14 2021 requires driver version >= 470 to avoid HDMI output problems. The solution is to follow the guide of 
@@ -58,6 +58,7 @@ sudo apt-get install gnome-tweaks
 ```
 https://extensions.gnome.org/extension/1082/cpufreq
 ``` 
+------
 
 # Razer laptop control project
 A standalone driver + application designed for Razer notebooks
