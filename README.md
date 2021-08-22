@@ -1,5 +1,5 @@
-# Ubuntu for Razer Blade 14 2021. By Jiaxin Li
-## Install Ubuntu 21.04 or newer.
+# Ubuntu for Razer Blade 14 2021.
+## Install Ubuntu 20.04.3 or newer.
 Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04.2 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. Good news is that Ubuntu 20.04.3 is shipped with kernel 5.11.x. Please wait for Aug 26, 2021 to get Ubuntu 20.04.3.
 
 You may need to disable `security boot` in BIOS to avoid problems like low-resolution during Ubuntu installation.
