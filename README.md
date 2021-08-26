@@ -1,6 +1,6 @@
 # Ubuntu for Razer Blade 14 2021.
 ## Install Ubuntu 20.04.3 or newer.
-Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04.2 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. Good news is that Ubuntu 20.04.3 is shipped with kernel 5.11.x. Please wait for Aug 26, 2021 to get Ubuntu 20.04.3.
+Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04.2 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. Good news is that Ubuntu 20.04.3 is shipped with kernel 5.11.x. Please wait for Aug 26, 2021 to get Ubuntu 20.04.3. Ubuntu 21.04 works well with the wifi and bluetooth. 20.04.03 failed to run the AX210 wifi driver. 
 
 You may need to disable `security boot` in BIOS to avoid problems like low-resolution during Ubuntu installation.
 
@@ -10,6 +10,17 @@ https://regulus.cc/2019/10/05/Windows10+Ubuntu18.04%E5%8F%8C%E7%B3%BB%E7%BB%9F%E
 ```
 
 Note that you have to allocate a swap partition of size >=16GB if you need hibernation (to disk). Personally I don't think hibernation is necessary. Suspend (to RAM) is much more useful.
+
+# Wifi Problem
+It happens only with 20.04.03. Updating kernel to 5.12 doesn't solve the problem.
+
+Using the firmware below doesn't work
+```
+https://www.intel.com/content/www/us/en/support/articles/000005511/wireless.html
+sudo cp *.ucode /lib/firware
+```
+
+The real solution is to rename / remove `/lib/firmware/iwlwifi-ty-a0-gf-a0.pnvm`
 
 ## Screen Brightness Adjustment
 - Kernel 5.12 should have solved it. Nvidia 470 driver works with kernel 5.12. Not sure if nvidia 470 works with 5.13 yet, need experiments.
