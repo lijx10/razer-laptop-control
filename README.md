@@ -1,6 +1,6 @@
 # Ubuntu for Razer Blade 14 2021.
 ## Install Ubuntu 20.04.3 or newer.
-Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04.2 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. Good news is that Ubuntu 20.04.3 is shipped with kernel 5.11.x. Please wait for Aug 26, 2021 to get Ubuntu 20.04.3. Ubuntu 21.04 works well with the wifi and bluetooth. 20.04.03 failed to run the AX210 wifi driver. 
+Blade 14 2021 is using Intel AX210 wifi card. The first kernel that includes proper driver is version 5.10. However, Ubuntu 20.04.2 comes with kernel 5.8.x, and it is non-trivial to upgrade the kernel to 5.10 because libc version compatibility. Good news is that Ubuntu 20.04.3 is shipped with kernel 5.11.x. However, Ubuntu 21.04 works well with the wifi and bluetooth, while Ubuntu 20.04.03 failed to run the AX210 wifi driver without the trick shown below.
 
 You may need to disable `security boot` in BIOS to avoid problems like low-resolution during Ubuntu installation.
 
@@ -29,8 +29,8 @@ The real solution is to rename / remove `/lib/firmware/iwlwifi-ty-a0-gf-a0.pnvm`
 https://askubuntu.com/questions/19486/how-do-i-add-a-kernel-boot-parameter
 ```
 
-## Suspend problem
-Please refer to:
+## Suspend problem.
+It happens with broken nvidia drive installation. I encounter this in Ubuntu 21.04, but not in Ubuntu 20.04.3. If you can't fix the nvidia driver installation, please refer to:
 ```
 suspend/suspend.sh
 ```
@@ -39,15 +39,11 @@ suspend/suspend.sh
 Not working yet. No idea how to solve it with software. A workaround is to buy a usb-to-3.5mm converter.
 
 ## nvidia and cuda
-GTX/RTX 30xx requires cuda 11. Blade 14 2021 requires driver version >= 470 to avoid HDMI output problems. The solution is to follow the guide of 
-```
-https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
-```
-
-I was using network deb method, but there are errors in the installation process. I ran the following command to fix the error, and then continue with the cuda/driver installation.
-```
-sudo apt-get -f install
-```
+GTX/RTX 30xx requires cuda 11. Blade 14 2021 requires driver version >= 470 to avoid HDMI output problems. Nvidia driver and cuda install:
+1. Try the guide of `https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html` using run-file or deb install. 
+2. If both method fail, run `sudo apt-get remove --purge nvidia*` and reboot.
+3. If there is auto-reboot problem, reboot into recovery mode, and select `resume` in recovery mode. Now you should be able to login without reboot problem.
+4. Try Step 1 again. If both method fails, run `sudo apt-get autoremove`, and then try Step 1 again.
 
 Please refer to `gpu/gpu_control.sh` for fine-grain power and performance control of the nvidia gpu.
 
